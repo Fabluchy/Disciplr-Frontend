@@ -6,6 +6,12 @@ import { WINDOW_SIZE, WINDOW_THRESHOLD } from '../../utils/windowRange';
 import * as windowRangeMod from '../../utils/windowRange';
 import * as txTotalsMod from '../../utils/txTotals';
 
+// Breadcrumb renders react-router <Link>s, but this suite renders the page
+// without a router. None of the tests assert on breadcrumb content.
+vi.mock('../../components/Breadcrumb', () => ({
+  default: () => null,
+}));
+
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: (query: string) => ({

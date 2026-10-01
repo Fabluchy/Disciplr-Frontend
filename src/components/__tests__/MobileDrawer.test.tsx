@@ -24,6 +24,15 @@ vi.mock('../TrustlineBanner', () => ({
   TrustlineBanner: () => null,
 }));
 
+// Both read the wallet context, which has no provider in this bare-Layout test.
+vi.mock('../Wallet/WalletBalanceChip', () => ({
+  WalletBalanceChip: () => null,
+}));
+
+vi.mock('../NetworkMismatchBanner', () => ({
+  NetworkMismatchBanner: () => null,
+}));
+
 function renderOpenDrawer(onClose = vi.fn()) {
   render(
     <MemoryRouter>

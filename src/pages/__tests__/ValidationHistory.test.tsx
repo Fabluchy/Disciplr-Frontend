@@ -2,7 +2,7 @@ import { fireEvent, render, screen, within } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type { ValidationTask } from '../../Zustand/Store';
 import { useVerifierStore } from '../../Zustand/Store';
-import { VALIDATION_HISTORY_PAGE_SIZE_KEY } from '../../utils/pageSizePref';
+import { VALIDATION_HISTORY_PAGE_SIZE_STORAGE_KEY } from '../../utils/pageSizePref';
 import ValidationHistory from '../ValidationHistory';
 
 const { mockDownloadCsv } = vi.hoisted(() => ({
@@ -267,7 +267,7 @@ describe('ValidationHistory', () => {
       target: { value: '25' },
     });
 
-    expect(window.localStorage.getItem('validation-history-page-size')).toBe('25');
+    expect(window.localStorage.getItem(VALIDATION_HISTORY_PAGE_SIZE_STORAGE_KEY)).toBe('25');
 
     unmount();
     renderHistory();
@@ -277,7 +277,7 @@ describe('ValidationHistory', () => {
   });
 
   it('ignores invalid stored page sizes', () => {
-    window.localStorage.setItem('validation-history-page-size', '999');
+    window.localStorage.setItem(VALIDATION_HISTORY_PAGE_SIZE_STORAGE_KEY, '999');
 
     renderHistory();
 
