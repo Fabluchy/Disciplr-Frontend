@@ -1,6 +1,6 @@
 const NOTES_DRAFT_PREFIX = 'validation-notes-draft:';
 
-function draftKey(taskId: string): string {
+export function getNotesDraftKey(taskId: string): string {
   return `${NOTES_DRAFT_PREFIX}${taskId}`;
 }
 
@@ -22,7 +22,7 @@ export function readNotesDraft(taskId: string | undefined): string {
   }
 
   try {
-    return storageAvailable()?.getItem(draftKey(taskId)) ?? '';
+    return storageAvailable()?.getItem(getNotesDraftKey(taskId)) ?? '';
   } catch {
     return '';
   }
@@ -34,7 +34,7 @@ export function writeNotesDraft(taskId: string | undefined, notes: string): void
   }
 
   try {
-    storageAvailable()?.setItem(draftKey(taskId), notes);
+    storageAvailable()?.setItem(getNotesDraftKey(taskId), notes);
   } catch {
     // Draft persistence is best-effort; verification must keep working.
   }
@@ -46,7 +46,7 @@ export function clearNotesDraft(taskId: string | undefined): void {
   }
 
   try {
-    storageAvailable()?.removeItem(draftKey(taskId));
+    storageAvailable()?.removeItem(getNotesDraftKey(taskId));
   } catch {
     // Draft cleanup is best-effort.
   }

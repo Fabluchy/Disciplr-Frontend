@@ -776,6 +776,7 @@ const TxRow = memo(function TxRow({
           <Tooltip content={tx.hash} position="top">
             <button
               className="vt-tx-hash"
+              title="Copy hash"
               onClick={(e) => {
                 e.stopPropagation();
                 onCopy(tx.hash, tx.id + "-hash");
@@ -1228,6 +1229,29 @@ function ChevronIcon() {
         d="M2 3.5l3 3 3-3"
         stroke="currentColor"
         strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+interface SortIconProps {
+  dir: TransactionSortDir;
+}
+function SortIcon({ dir }: SortIconProps) {
+  return (
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden="true"
+      style={{ display: "inline", marginRight: 5, opacity: 0.7 }}
+    >
+      <path
+        d={dir === "asc" ? "M4 12l4-8 4 8" : "M4 4l4 8 4-8"}
+        stroke="currentColor"
+        strokeWidth="1.75"
         strokeLinecap="round"
         strokeLinejoin="round"
       />

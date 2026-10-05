@@ -11,6 +11,16 @@ vi.mock('../TrustlineBanner', () => ({
   TrustlineBanner: () => null,
 }));
 
+// Both of these read the wallet context, which has no provider when Layout is
+// rendered on its own here. Stub them out, matching App.errorBoundary.test.tsx.
+vi.mock('../NetworkMismatchBanner', () => ({
+  NetworkMismatchBanner: () => <div data-testid="network-mismatch-banner" />,
+}));
+
+vi.mock('../Wallet/WalletBalanceChip', () => ({
+  WalletBalanceChip: () => null,
+}));
+
 // MobileDrawer uses FocusTrap only when open; mock it so any accidental open
 // in these tests doesn't break due to missing DOM focus targets.
 vi.mock('focus-trap-react', () => ({

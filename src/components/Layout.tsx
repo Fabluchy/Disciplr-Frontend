@@ -108,6 +108,7 @@ export default function Layout({ children }: LayoutProps) {
               Create Vault
             </Link>
             <NotificationBell />
+            <WalletBalanceChip />
             <WalletConnectButton />
           </div>
         </nav>
@@ -129,6 +130,7 @@ export default function Layout({ children }: LayoutProps) {
           onClose={() => setDrawerOpen(false)}
         />
       </header>
+      <NetworkMismatchBanner />
       <TrustlineBanner />
 
       <main
